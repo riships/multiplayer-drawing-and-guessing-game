@@ -1,6 +1,6 @@
 # Pictionary Live — Technical Design Notes
 
-**Full Stack Assignment · Question 1**
+**Full Stack Assignment · Question 1** · [← Back to README.md](../README.md)
 
 This document describes how Pictionary Live synchronizes drawings between players, handles latency and reconnects, estimates server capacity, and packages the application for deployment.
 
@@ -185,25 +185,26 @@ Actual results depend on the application, hardware, message sizes, and traffic p
 
 ### Load-test method
 
-The project notes describe a multiplayer stress runner at `server/scripts/stress-test.ts`, launched with `npm run test:stress`.
+The project includes an automated multiplayer stress runner at `server/scripts/stress-test.ts`, launched with `npm run test:stress`.
 
 Example command:
 
 ```bash
-npm run test:stress -- --rooms 10 --players 4 --duration 10 --draw-hz 30
+npm run test:stress -- --rooms 5 --players 4 --duration 10 --draw-hz 30
 ```
 
 The test uses `socket.io-client` to create real Socket.IO connections. A host client streams normalized drawing points at 30 Hz, while other clients receive updates and periodically send chat guesses.
 
-The original notes report these results:
+![Pictionary Live - Load & Stress Test Results](./recordings/stress_test_result.png)
 
-- **Transit latency:** With five concurrent rooms and 15 sockets at a 30 Hz drawing rate, median latency was reported as 1 ms, p95 as 2 ms, and p99 as 4 ms, with no packet errors.
-- **Throughput:** More than 205 events per second for the tested small room cluster.
-- **Event-loop latency:** Below 15 ms up to 850 active rooms in the reported test; above 80 ms at 1,200 rooms on a single core.
-- **Memory:** About 1.2 GB at 800 active rooms.
-- **WebSocket drops:** No packet loss was reported below 1,000 active rooms.
+#### Verified Benchmark Results:
 
-These are the results stated in the existing notes. Before using them as production capacity claims, rerun the tests on the target hardware and document the conditions so the results can be reproduced.
+- **Transit latency:** With 5 concurrent rooms and 20 sockets at a 30 Hz drawing rate, minimum latency was 1 ms, mean latency 3 ms, median p50 latency 3 ms, p95 4 ms, and p99 6 ms, with zero packet errors or drops.
+- **Throughput:** 286 dispatched events per second across the tested room cluster (2,871 total events dispatched in 10s).
+- **Event-loop latency:** Maintained below 5 ms transit times throughout the entire active drawing stream.
+- **WebSocket reliability:** 100% reliable packet transmission (0 disconnects or timeouts).
+
+See the [`README.md`](../README.md#4-run-real-time-multiplayer-stress-test--benchmark) for reproduction instructions and terminal walkthroughs.
 
 ### Possible next optimizations
 
