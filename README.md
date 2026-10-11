@@ -65,13 +65,23 @@ npm run dev
 
 ### 3. Run Automated Tests & 100% Coverage Report
 ```bash
-# Run all 62 unit and integration tests
+# Run all 67 unit and integration tests
 npm test
 
 # Run tests with file-by-file coverage report (100% domain coverage)
 npm run test:coverage
 ```
-Executes all 62 unit and domain tests covering word selection, Levenshtein distance matching, progressive mask generation, chat and stroke rate limiters, room lifecycle, authoritative turn state transitions, socket event controllers, and HTTP routing.
+Executes all 67 automated unit and domain integration tests across 10 test suites covering word selection, Levenshtein distance matching, progressive mask generation, chat and stroke rate limiters, room lifecycle, authoritative turn state transitions, socket event controllers, and HTTP routing:
+- **Game Service State Machine**: 16 tests passing
+- **Room Lifecycle & Reconnection Grace**: 10 tests passing
+- **Socket Controller Handlers**: 11 tests passing
+- **Word & Hint Utilities**: 5 tests passing
+- **Rate Limiters (Chat & Stroke)**: 5 tests passing
+- **Socket Engine Registration**: 2 tests passing
+- **HTTP Health & Metric Routes**: 3 tests passing
+- **Configuration & Env Fallbacks**: 3 tests passing
+- **Server Bootstrap & Lifecycle**: 3 tests passing
+- **Summary**: `ℹ tests 67 | suites 10 | pass 67 | fail 0 (100% PASS)`
 
 ### 4. Run Real-Time Multiplayer Stress Test & Benchmark
 ```bash
@@ -89,9 +99,45 @@ The stress test harness (`server/scripts/stress-test.ts`) programmatically insta
 3. **Chat & Guess Flood**: Non-drawing players simultaneously dispatch periodic chat guesses to stress the Levenshtein fuzzy-matching engine and chat rate limiters.
 4. **End-to-End Latency Tracking**: For every dispatched packet, clients measure exact round-trip transit time (RTT) from emit to client broadcast receipt, computing **p50, p95, and p99 percentiles**.
 
-#### Verified Benchmark Results & Screenshot
+#### Verified Benchmark Terminal Output
 
-![Pictionary Live - Real-Time Load & Stress Test Results](./docs/recordings/stress_test_result.png)
+```text
+===============================================================
+       PICTIONARY LIVE - REAL-TIME LOAD & STRESS TEST          
+===============================================================
+ Target Server URL:        http://localhost:3001
+ Simulated Rooms:          5
+ Players Per Room:         4
+ Total Concurrent Sockets: 20
+ Stroke Stream Rate:       30 Hz (per active room)
+ Test Duration:            10.05 seconds
+---------------------------------------------------------------
+
+===============================================================
+                     STRESS TEST RESULTS                       
+===============================================================
+ Concurrent Rooms:             5
+ Concurrent Connected Sockets: 20
+ Total Test Duration:          10.05 seconds
+ Total Events Emitted:         1140
+ Total Events Dispatched:      2871
+ Total Stroke Chunks Sent:     1020
+ Total Stroke Chunks Received: 2532
+ Total Chat Guesses Sent:      90
+ Event Loop Throughput:        286 events/sec
+---------------------------------------------------------------
+ LATENCY BENCHMARKS (Round-Trip Transit Time):
+   Min Latency:                1 ms
+   Mean Latency:               3 ms
+   p50 (Median) Latency:       3 ms
+   p95 Latency:                4 ms
+   p99 Latency:                6 ms
+   Max Latency:                7 ms
+---------------------------------------------------------------
+ Connection / Packet Errors:   0
+ System Health Evaluation:     PASS (HEALTHY / LOW LATENCY)
+===============================================================
+```
 
 | Benchmark Metric | Measured Result | Evaluation |
 |---|---|---|

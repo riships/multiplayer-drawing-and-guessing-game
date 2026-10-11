@@ -195,8 +195,6 @@ npm run test:stress -- --rooms 5 --players 4 --duration 10 --draw-hz 30
 
 The test uses `socket.io-client` to create real Socket.IO connections. A host client streams normalized drawing points at 30 Hz, while other clients receive updates and periodically send chat guesses.
 
-![Pictionary Live - Load & Stress Test Results](./recordings/stress_test_result.png)
-
 #### Verified Benchmark Results:
 
 - **Transit latency:** With 5 concurrent rooms and 20 sockets at a 30 Hz drawing rate, minimum latency was 1 ms, mean latency 3 ms, median p50 latency 3 ms, p95 4 ms, and p99 6 ms, with zero packet errors or drops.
