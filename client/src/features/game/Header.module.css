@@ -1,0 +1,110 @@
+.header {
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-radius: var(--radius-lg);
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.roomButton {
+  padding: 6px 12px;
+  font-size: var(--font-size-xs);
+}
+
+.copiedText {
+  color: var(--color-success);
+  margin-left: 4px;
+}
+
+.roundBadge {
+  font-size: var(--font-size-xs);
+  padding: 5px 10px;
+}
+
+.centerSection {
+  text-align: center;
+  flex: 1;
+}
+
+.drawerBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-primary-subtle);
+  border: 1px solid #bfdbfe;
+  padding: 4px 16px;
+  border-radius: var(--radius-md);
+}
+
+.drawLabel {
+  font-size: var(--font-size-xs);
+  color: var(--color-primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.drawWord {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.wordMask {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  color: var(--color-text);
+  font-family: var(--font-mono);
+}
+
+.drawerHint {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.selectingState {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-warning);
+}
+
+.revealState {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-success);
+}
+
+.revealWord {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.defaultTitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.timerBadge {
+  font-size: var(--font-size-base);
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+}

@@ -1,0 +1,9 @@
+node_modules
+.git
+.github
+.agents
+*.log
+coverage
+.DS_Store
+.system_generated
+docs

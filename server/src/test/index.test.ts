@@ -1,0 +1,10 @@
+import './api.test';
+import './logger.util.test';
+import './word.util.test';
+import './rate-limit.util.test';
+import './room.service.test';
+import './game.service.test';
+import './socket.controller.test';
+import './sockets.test';
+import './config.test';
+import './server.test';

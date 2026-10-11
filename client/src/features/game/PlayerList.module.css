@@ -1,0 +1,141 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.headerTitle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.playerCount {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.playerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.playerRowMe {
+  background: var(--color-primary-subtle);
+  border-color: #bfdbfe;
+}
+
+.playerRowDisconnected {
+  opacity: 0.6;
+}
+
+.playerLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.rank {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-text-dim);
+  width: 16px;
+  text-align: center;
+}
+
+.rankLeader {
+  color: var(--color-primary);
+}
+
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-muted);
+  color: var(--color-text);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.avatarMe {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+.playerDetails {
+  min-width: 0;
+}
+
+.playerNameRow {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.youBadge {
+  font-size: 11px;
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.hostIcon {
+  display: inline-flex;
+}
+
+.statusBadges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 1px;
+}
+
+.badgeSmall {
+  font-size: 10px;
+  padding: 1px 5px;
+}
+
+.badgeDisconnected {
+  font-size: 10px;
+  padding: 1px 5px;
+  white-space: nowrap;
+}
+
+.scoreBadge {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text);
+  background: var(--color-surface-subtle);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+}
